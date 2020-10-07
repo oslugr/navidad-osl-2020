@@ -21,7 +21,7 @@ function mostrarImagen(input){
 
             img2.onload = function() { 
                 context.globalAlpha = 1.0; 
-                context.drawImage(img1, 0, 0); 
+                context.drawImage(img1, 0, 0);
                 context.globalAlpha = 1;
                 context.drawImage(img2, 0, 0); 
             };

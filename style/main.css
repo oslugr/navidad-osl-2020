@@ -1,0 +1,23 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#resultado{
+    padding: 0;
+    width: 100%;
+}
+
+#contenido{
+    margin: 0;
+}
+
+#boton-sup{
+    border-radius: 0;
+}
+
+#warning{
+    /* Para que no se solape con el botón superior*/
+    margin-bottom: 0;
+}
