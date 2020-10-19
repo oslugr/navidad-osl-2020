@@ -35,3 +35,12 @@ function mostrarImagen(input){
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+
+// Descarga de la imagen
+function descargar(){
+    let link = document.createElement('a');
+    link.download = 'osl_navidad.png';
+    link.href = document.getElementById('resultado').toDataURL();
+    link.click();
+}
