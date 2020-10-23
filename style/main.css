@@ -4,6 +4,11 @@ html, body{
     width: 100%;
 }
 
+#main{
+    width: 100%;
+    margin: 0;
+}
+
 #resultado{
     padding: 0;
     width: 100%;
@@ -19,5 +24,45 @@ html, body{
 
 #warning{
     /* Para que no se solape con el botón superior*/
-    margin-bottom: 0;
+    margin: 0;
+}
+
+/*
+    SLIDER
+*/
+
+#slider-div{
+    padding-bottom: 20px;
+    /* height: 100%; */
+}
+
+#slider{
+    width: 100%;
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    height: 7px; /* Specified height */
+    background: #cacbcd; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 1; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    border-radius: 2px;
+}
+
+#slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%; 
+    background: rgba(0,0,0);
+    cursor: pointer;
+}
+
+#slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgb(43, 43, 43);
+    cursor: pointer;
 }

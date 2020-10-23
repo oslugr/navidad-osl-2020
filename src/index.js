@@ -8,6 +8,8 @@ let fondo = {
 
 let sticker = {
     imagen: null,
+    defecto_x: 100,
+    defecto_y: 100,
     x: 100,
     y: 100,
     pos_x: 0,
@@ -100,4 +102,14 @@ function descargar(){
     link.download = 'osl_navidad.png';
     link.href = document.getElementById('resultado').toDataURL();
     link.click();
+}
+
+// Cambia el tamaño del sticker 
+function cambiarTamano(valor){
+    ratio = valor/50;
+
+    sticker.x = sticker.defecto_x*ratio;
+    sticker.y = sticker.defecto_y*ratio;
+
+    crearImagen();
 }
