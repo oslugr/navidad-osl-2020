@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OSL - Felicitación navidad</title>
 
-    <link rel="stylesheet" type="text/css" href="style/main.css">
-
     <!-- Semantic UI -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-    <script
-        src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-        crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="style/main.css">
 </head>
 
 <body>
@@ -50,6 +50,56 @@
                     Stickers
                 </h4>
 
+                <div id="grid-stickers">
+                    <div class="row">
+                        <a class="col-md-1 slider-control" href="#multi-item-example" role="button" data-slide="prev">
+                            <div class="carousel-control-prev-icon" aria-hidden="true"></div>
+                        </a>
+                        
+                        <div class="col-md-10">
+                            <div id="multi-item-example" class="carousel slide" data-interval="false">
+
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <img src="stickers/merry.png" class="sticker-img" alt="">
+                                            </div>
+                                
+                                            <div class="col-md-3">
+                                                <img src="stickers/gorro.png" class="sticker-img" alt="">
+                                            </div>
+                                
+                                            <div class="col-md-3">
+                                                <img src="stickers/explosion.png" class="sticker-img" alt="">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                                <img src="stickers/merry.png" class="sticker-img" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <img src="stickers/gorro.png" class="sticker-img" alt="">
+                                            </div>
+                                
+                                            <div class="col-md-3">
+                                                <img src="stickers/explosion.png" class="sticker-img" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="col-md-1 slider-control" href="#multi-item-example" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+                
+
                 <!-- Slider para cambiar el tamaño del sticker -->
                 <h4 class="ui horizontal divider header">
                     Tamaño
@@ -72,6 +122,8 @@
                     Aquí verás tu imagen
                 </canvas>
             </div>
+
+            
         </div>
 
     <script src="src/index.js"></script>
