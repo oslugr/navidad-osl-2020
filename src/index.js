@@ -6,16 +6,6 @@ let fondo = {
     url: ''
 }
 
-let sticker = {
-    imagen: null,
-    defecto_x: 100,
-    defecto_y: 100,
-    x: 100,
-    y: 100,
-    pos_x: 0,
-    pos_y: 0
-}
-
 // Construye el canvas donde se mostrará la fotografía con los stickers
 function construirCanvas(){
     canvas = document.getElementById('resultado');
@@ -23,13 +13,12 @@ function construirCanvas(){
 
     // Crea las imágenes que se van mostrar
     fondo.imagen = new Image();
-    sticker.imagen = new Image();
-
-    fondo.imagen.onload = function(){
-        sticker.imagen.src = 'stickers/gorro.png'; 
+    // Cargas los stickers de forma asíncrona
+    for(i=0; i<stickers.length; i++){
+        stickers[i].imagen.src = stickers[i].url;
     }
 
-    sticker.imagen.onload = function(){
+    fondo.imagen.onload = function(){
         crearImagen();
     }
 
@@ -49,8 +38,12 @@ function crearImagen(){
     context.globalAlpha = 1.0; 
     context.drawImage(fondo.imagen, 0, 0, canvas.width, canvas.height);
     context.globalAlpha = 1.0;
-    context.drawImage(sticker.imagen, sticker.pos_x, sticker.pos_y, sticker.x, sticker.y);
-    
+
+    stickers.filter(x => x.activo).map(dibujarSticker);   
+}
+
+function dibujarSticker( obj ){
+    context.drawImage(obj.imagen, obj.pos_x, obj.pos_y, obj.x, obj.y);
 }
 
 // Toma la imagen subida y la dibuja
