@@ -144,8 +144,8 @@ function cambiarEstado( el, i ){
         el.style.background = 'none';
         stickers[i].estado = 0;
         stickers[i].activo = false;
-        crearImagen();
         stickerActivo = null;
+        crearImagen();
     }
 
     
