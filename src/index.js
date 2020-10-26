@@ -127,8 +127,11 @@ function cambiarEstado( el, i ){
 
         if(stickerActivo != null){
             // Se quita el estado de seleccionado a otro sticker
-            stickers[stickerActivo].estado = 1;
-            document.getElementsByClassName('sticker-click')[stickerActivo].style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
+            // si este se está mostrando
+            if(stickers[stickerActivo].estado){
+                stickers[stickerActivo].estado = 1;
+                document.getElementsByClassName('sticker-click')[stickerActivo].style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
+            }
         }
 
         stickerActivo = i;
