@@ -36,7 +36,7 @@ let stickers = [
         activo: false
     },
     {
-        url: 'stickers/exploxion2.png',
+        url: 'stickers/explosion2.png',
         imagen: new Image(),
         defecto_x: 100,
         defecto_y: 100,
