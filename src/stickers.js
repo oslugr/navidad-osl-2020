@@ -1,6 +1,6 @@
 let stickers = [
     {
-        url: '/stickers/merry.png',
+        url: 'stickers/merry.png',
         imagen: new Image(),
         defecto_x: 100,
         defecto_y: 100,
@@ -8,10 +8,11 @@ let stickers = [
         y: 100,
         pos_x: 0,
         pos_y: 0,
+        estado: 0,
         activo: false
     },
     {
-        url: '/stickers/gorro.png',
+        url: 'stickers/gorro.png',
         imagen: new Image(),
         defecto_x: 100,
         defecto_y: 100,
@@ -19,10 +20,11 @@ let stickers = [
         y: 100,
         pos_x: 0,
         pos_y: 0,
+        estado: 0,
         activo: false
     },
     {
-        url: '/stickers/explosion.png',
+        url: 'stickers/explosion.png',
         imagen: new Image(),
         defecto_x: 100,
         defecto_y: 100,
@@ -30,10 +32,11 @@ let stickers = [
         y: 100,
         pos_x: 0,
         pos_y: 0,
+        estado: 0,
         activo: false
     },
     {
-        url: '/stickers/exploxion2.png',
+        url: 'stickers/exploxion2.png',
         imagen: new Image(),
         defecto_x: 100,
         defecto_y: 100,
@@ -41,10 +44,11 @@ let stickers = [
         y: 100,
         pos_x: 0,
         pos_y: 0,
+        estado: 0,
         activo: false
     },
     {
-        url: '/stickers/corazon.png',
+        url: 'stickers/corazon.png',
         imagen: new Image(),
         defecto_x: 100,
         defecto_y: 100,
@@ -52,6 +56,7 @@ let stickers = [
         y: 100,
         pos_x: 0,
         pos_y: 0,
+        estado: 0,
         activo: false
     }
 

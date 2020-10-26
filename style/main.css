@@ -94,7 +94,6 @@ html, body{
     align-items: center;
 }
 
-/* .slider-control span{
-    display: flex;
-    justify-content: space-between;
-} */
+.sticker-click:hover{
+    cursor: pointer;
+}

@@ -6,6 +6,8 @@ let fondo = {
     url: ''
 }
 
+let stickerActivo = null;
+
 // Construye el canvas donde se mostrará la fotografía con los stickers
 function construirCanvas(){
     canvas = document.getElementById('resultado');
@@ -39,11 +41,12 @@ function crearImagen(){
     context.drawImage(fondo.imagen, 0, 0, canvas.width, canvas.height);
     context.globalAlpha = 1.0;
 
-    stickers.filter(x => x.activo).map(dibujarSticker);   
+    stickers.filter(x => x.activo).map( y => { dibujarSticker(y); });   
 }
 
 function dibujarSticker( obj ){
     context.drawImage(obj.imagen, obj.pos_x, obj.pos_y, obj.x, obj.y);
+    // console.log(obj)
 }
 
 // Toma la imagen subida y la dibuja
@@ -105,4 +108,38 @@ function cambiarTamano(valor){
     sticker.y = sticker.defecto_y*ratio;
 
     crearImagen();
+}
+
+function cambiarEstado( el, i ){
+
+    // El sticker no se está mostrando
+    if(stickers[i].estado == 0){
+        el.style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
+        stickers[i].estado = 1;
+        stickers[i].activo = true;
+
+        crearImagen();
+    }
+    // El sticker se está mostrando
+    else if(stickers[i].estado == 1){
+        el.style.backgroundColor = 'rgba(255, 255, 0, 0.2)';
+        stickers[i].estado = 2;
+
+        if(stickerActivo != null){
+            // Se quita el estado de seleccionado a otro sticker
+            stickers[stickerActivo].estado = 1;
+            document.getElementsByClassName('sticker-click')[stickerActivo].style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
+        }
+
+        stickerActivo = i;
+    }
+    // El sticker está activo
+    else{
+        el.style.background = 'none';
+        stickers[i].estado = 0;
+        stickers[i].activo = false;
+        crearImagen();
+    }
+
+    
 }
