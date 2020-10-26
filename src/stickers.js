@@ -9,7 +9,8 @@ let stickers = [
         pos_x: 0,
         pos_y: 0,
         estado: 0,
-        activo: false
+        activo: false,
+        tamano: 1.0
     },
     {
         url: 'stickers/gorro.png',
@@ -21,7 +22,8 @@ let stickers = [
         pos_x: 0,
         pos_y: 0,
         estado: 0,
-        activo: false
+        activo: false,
+        tamano: 1.0
     },
     {
         url: 'stickers/explosion.png',
@@ -33,7 +35,8 @@ let stickers = [
         pos_x: 0,
         pos_y: 0,
         estado: 0,
-        activo: false
+        activo: false,
+        tamano: 1.0
     },
     {
         url: 'stickers/explosion2.png',
@@ -45,7 +48,8 @@ let stickers = [
         pos_x: 0,
         pos_y: 0,
         estado: 0,
-        activo: false
+        activo: false,
+        tamano: 1.0
     },
     {
         url: 'stickers/corazon.png',
@@ -57,7 +61,8 @@ let stickers = [
         pos_x: 0,
         pos_y: 0,
         estado: 0,
-        activo: false
+        activo: false,
+        tamano: 1.0
     }
 
 ]

@@ -86,8 +86,8 @@ $("#resultado").mousemove(function(e) {
         var cRect = canvas.getBoundingClientRect();        // Gets CSS pos, and width/height
         var canvasX = e.clientX - cRect.left;  // Subtract the 'left' of the canvas 
         var canvasY = e.clientY - cRect.top;   // from the X/Y positions to make  
-        sticker.pos_x = canvasX;
-        sticker.pos_y = canvasY;
+        stickers[stickerActivo].pos_x = canvasX;
+        stickers[stickerActivo].pos_y = canvasY;
         crearImagen();
     }
 });
@@ -103,9 +103,10 @@ function descargar(){
 // Cambia el tamaño del sticker 
 function cambiarTamano(valor){
     ratio = valor/50;
+    stickers[stickerActivo].tamano = ratio;
 
-    sticker.x = sticker.defecto_x*ratio;
-    sticker.y = sticker.defecto_y*ratio;
+    stickers[stickerActivo].x = stickers[stickerActivo].defecto_x*ratio;
+    stickers[stickerActivo].y = stickers[stickerActivo].defecto_y*ratio;
 
     crearImagen();
 }
@@ -135,6 +136,8 @@ function cambiarEstado( el, i ){
         }
 
         stickerActivo = i;
+        // Cambia el valor del slider al correspondiente
+        document.getElementById('slider').value = stickers[stickerActivo].tamano*50;
     }
     // El sticker está activo
     else{
