@@ -46,7 +46,6 @@ function crearImagen(){
 
 function dibujarSticker( obj ){
     context.drawImage(obj.imagen, obj.pos_x, obj.pos_y, obj.x, obj.y);
-    // console.log(obj)
 }
 
 // Toma la imagen subida y la dibuja
@@ -111,6 +110,7 @@ function cambiarTamano(valor){
     crearImagen();
 }
 
+// Cambia el estado de un sticker al ser pulsado
 function cambiarEstado( el, i ){
 
     // El sticker no se está mostrando
@@ -147,6 +147,13 @@ function cambiarEstado( el, i ){
         stickerActivo = null;
         crearImagen();
     }
+}
 
-    
+function nuevoTamanoPorDefectoStickers(){
+    let nuevoAncho = document.getElementById('resultado').offsetWidth;
+
+    for(i=0; i<stickers.length; i++){
+        stickers[i].defecto_x = nuevoAncho/2;
+        stickers[i].defecto_y = nuevoAncho/2;
+    }
 }
