@@ -12,6 +12,7 @@ html, body{
 #resultado{
     padding: 0;
     width: 100%;
+    touch-action: none;
 }
 
 #contenido{

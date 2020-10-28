@@ -69,9 +69,18 @@ function mostrarImagen(input){
     }
 }
 
+function getPosicionMouse(cvn, e){
+    var cRect = cvn.getBoundingClientRect();
+    return{
+        canvasX: e.clientX - cRect.left,
+        canvasY: e.clientY - cRect.top
+    } 
+}
+
 // Funcionalidad para mover un sticker a través de la imagen
 let isDragging = true;
 
+// Funcionalidad del ratón
 $("#resultado").mousedown(function(e){
     isDragging = true;
 });
@@ -82,15 +91,42 @@ $(window).mouseup(function(){
 
 $("#resultado").mousemove(function(e) {
     if( isDragging == true && canvas)
-    {
-        var cRect = canvas.getBoundingClientRect();        // Gets CSS pos, and width/height
-        var canvasX = e.clientX - cRect.left;  // Subtract the 'left' of the canvas 
-        var canvasY = e.clientY - cRect.top;   // from the X/Y positions to make  
-        stickers[stickerActivo].pos_x = canvasX-stickers[stickerActivo].x/2;
-        stickers[stickerActivo].pos_y = canvasY-stickers[stickerActivo].y/2;
+    {   
+        let pos = getPosicionMouse(canvas, e);
+        stickers[stickerActivo].pos_x = pos.canvasX-stickers[stickerActivo].x/2;
+        stickers[stickerActivo].pos_y = pos.canvasY-stickers[stickerActivo].y/2;
+
         crearImagen();
     }
 });
+
+// Set up touch events for mobile, etc
+let cv = document.getElementById('resultado');
+
+cv.addEventListener("touchstart", function (e) {
+    var touch = e.touches[0];
+    var mouseEvent = new MouseEvent("mousedown", {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+    });
+
+    cv.dispatchEvent(mouseEvent);
+}, false);
+
+cv.addEventListener("touchend", function (e) {
+    var mouseEvent = new MouseEvent("mouseup", {});
+    cv.dispatchEvent(mouseEvent);
+}, false);
+
+cv.addEventListener("touchmove", function (e) {
+    var touch = e.touches[0];
+    var mouseEvent = new MouseEvent("mousemove", {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+    });
+
+    cv.dispatchEvent(mouseEvent);
+}, false);
 
 // Descarga de la imagen
 function descargar(){
