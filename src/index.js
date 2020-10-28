@@ -25,6 +25,7 @@ function construirCanvas(){
     }
 
     fondo.imagen.src = fondo.url;
+    nuevoTamanoPorDefectoStickers();
 }
 
 // Crea la imagen cada vez que cambia algo
@@ -155,5 +156,7 @@ function nuevoTamanoPorDefectoStickers(){
     for(i=0; i<stickers.length; i++){
         stickers[i].defecto_x = nuevoAncho/2;
         stickers[i].defecto_y = nuevoAncho/2;
+        stickers[i].x = stickers[i].defecto_x*stickers[i].tamano;
+        stickers[i].y = stickers[i].defecto_y*stickers[i].tamano;
     }
 }
