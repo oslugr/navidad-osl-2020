@@ -85,8 +85,8 @@ $("#resultado").mousemove(function(e) {
         var cRect = canvas.getBoundingClientRect();        // Gets CSS pos, and width/height
         var canvasX = e.clientX - cRect.left;  // Subtract the 'left' of the canvas 
         var canvasY = e.clientY - cRect.top;   // from the X/Y positions to make  
-        stickers[stickerActivo].pos_x = canvasX;
-        stickers[stickerActivo].pos_y = canvasY;
+        stickers[stickerActivo].pos_x = canvasX-stickers[stickerActivo].x/2;
+        stickers[stickerActivo].pos_y = canvasY-stickers[stickerActivo].y/2;
         crearImagen();
     }
 });
