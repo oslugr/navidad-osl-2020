@@ -6,4 +6,4 @@ Proyecto para felicitar la navidad a toda la comunidad univertaria
 
 * https://pixabay.com/illustrations/christmas-motives-stickers-3872483/
 * https://pixabay.com/illustrations/christmas-wreath-christmas-wreath-3864718/
-* 
+* https://pixabay.com/vectors/santa-hat-christmas-hat-santa-1087651/
