@@ -78,13 +78,23 @@ function getPosicionMouse(cvn, e){
 }
 
 function getElementoPulsado(pos){
-    console.log(pos)
+    s_a = null;
     for(i=0 ; i<stickers.length; i++){
         if(stickers[i].activo &&
            stickers[i].pos_x <= pos.canvasX && stickers[i].pos_x+stickers[i].x >= pos.canvasX &&
            stickers[i].pos_y <= pos.canvasY && stickers[i].pos_y+stickers[i].y >= pos.canvasY)
-           stickerActivo = i;
+            
+            s_a = i;
     }
+
+    if(s_a)
+        activarSticker(s_a);
+}
+
+function activarSticker(i){
+    stickerActivo = i;
+    stickers[i].activo = true;
+    document.getElementById('slider').value = stickers[stickerActivo].tamano*50;
 }
 
 // Funcionalidad para mover un sticker a través de la imagen
@@ -162,40 +172,20 @@ function cambiarTamano(valor){
 // Cambia el estado de un sticker al ser pulsado
 function cambiarEstado( el, i ){
 
-    // El sticker no se está mostrando
-    if(stickers[i].estado == 0){
-        el.style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
-        stickers[i].estado = 1;
-        stickers[i].activo = true;
-
-        crearImagen();
-    }
     // El sticker se está mostrando
-    else if(stickers[i].estado == 1){
-        el.style.backgroundColor = 'rgba(255, 255, 0, 0.2)';
-        stickers[i].estado = 2;
-
-        if(stickerActivo != null){
-            // Se quita el estado de seleccionado a otro sticker
-            // si este se está mostrando
-            if(stickers[stickerActivo].estado){
-                stickers[stickerActivo].estado = 1;
-                document.getElementsByClassName('sticker-click')[stickerActivo].style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
-            }
-        }
-
-        stickerActivo = i;
-        // Cambia el valor del slider al correspondiente
-        document.getElementById('slider').value = stickers[stickerActivo].tamano*50;
-    }
-    // El sticker está activo
-    else{
+    if(stickers[i].activo){
         el.style.background = 'none';
-        stickers[i].estado = 0;
         stickers[i].activo = false;
         stickerActivo = null;
         crearImagen();
     }
+    // El sticker no se está mostrando
+    else{
+        el.style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
+        activarSticker(i);
+        crearImagen();
+    }
+
 }
 
 function nuevoTamanoPorDefectoStickers(){
