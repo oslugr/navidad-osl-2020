@@ -77,12 +77,24 @@ function getPosicionMouse(cvn, e){
     } 
 }
 
+function getElementoPulsado(pos){
+    console.log(pos)
+    for(i=0 ; i<stickers.length; i++){
+        if(stickers[i].activo &&
+           stickers[i].pos_x <= pos.canvasX && stickers[i].pos_x+stickers[i].x >= pos.canvasX &&
+           stickers[i].pos_y <= pos.canvasY && stickers[i].pos_y+stickers[i].y >= pos.canvasY)
+           stickerActivo = i;
+    }
+}
+
 // Funcionalidad para mover un sticker a través de la imagen
 let isDragging = true;
 
 // Funcionalidad del ratón
 $("#resultado").mousedown(function(e){
     isDragging = true;
+    let pos = getPosicionMouse(canvas, e);
+    getElementoPulsado(pos);
 });
 
 $(window).mouseup(function(){
