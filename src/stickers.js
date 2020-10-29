@@ -8,7 +8,6 @@ let stickers = [
         y: 100,
         pos_x: 0,
         pos_y: 0,
-        estado: 0,
         activo: false,
         tamano: 1.0
     },
@@ -21,7 +20,6 @@ let stickers = [
         y: 100,
         pos_x: 0,
         pos_y: 0,
-        estado: 0,
         activo: false,
         tamano: 1.0
     },
@@ -34,7 +32,6 @@ let stickers = [
         y: 100,
         pos_x: 0,
         pos_y: 0,
-        estado: 0,
         activo: false,
         tamano: 1.0
     },
@@ -47,7 +44,6 @@ let stickers = [
         y: 100,
         pos_x: 0,
         pos_y: 0,
-        estado: 0,
         activo: false,
         tamano: 1.0
     },
@@ -60,7 +56,6 @@ let stickers = [
         y: 100,
         pos_x: 0,
         pos_y: 0,
-        estado: 0,
         activo: false,
         tamano: 1.0
     },
@@ -73,7 +68,6 @@ let stickers = [
         y: 100,
         pos_x: 0,
         pos_y: 0,
-        estado: 0,
         activo: false,
         tamano: 1.0
     },
@@ -86,7 +80,6 @@ let stickers = [
         y: 100,
         pos_x: 0,
         pos_y: 0,
-        estado: 0,
         activo: false,
         tamano: 1.0
     },
@@ -99,7 +92,6 @@ let stickers = [
         y: 100,
         pos_x: 0,
         pos_y: 0,
-        estado: 0,
         activo: false,
         tamano: 1.0
     },
@@ -112,7 +104,6 @@ let stickers = [
         y: 100,
         pos_x: 0,
         pos_y: 0,
-        estado: 0,
         activo: false,
         tamano: 1.0
     },
@@ -125,7 +116,6 @@ let stickers = [
         y: 100,
         pos_x: 0,
         pos_y: 0,
-        estado: 0,
         activo: false,
         tamano: 1.0
     }
