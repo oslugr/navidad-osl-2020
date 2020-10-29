@@ -3,7 +3,8 @@ let context = null;
 
 let fondo = {
     imagen: null,
-    url: ''
+    url: '',
+    factor_de_ancho: 1
 }
 
 let stickerActivo = null;
@@ -21,11 +22,16 @@ function construirCanvas(){
     }
 
     fondo.imagen.onload = function(){
+        // Calculamos como de ancho es en cuanto al espacio de la página
+        let ancho = document.getElementById('resultado').offsetWidth;
+        fondo.factor_de_ancho = fondo.imagen.width/ancho;
+
         crearImagen();
+        nuevoTamanoPorDefectoStickers();
     }
 
     fondo.imagen.src = fondo.url;
-    nuevoTamanoPorDefectoStickers();
+    
 }
 
 // Crea la imagen cada vez que cambia algo
@@ -33,8 +39,8 @@ function construirCanvas(){
 function crearImagen(){
 
     // Ajusta la imagen al espacio establecido para el elemento canvas
-    canvas.width = document.getElementById('resultado').offsetWidth; 
-    canvas.height = canvas.width*fondo.imagen.height/fondo.imagen.width;
+    canvas.width = fondo.imagen.width; 
+    canvas.height = fondo.imagen.height;
 
     // Dibuja toda la imagen
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -69,11 +75,12 @@ function mostrarImagen(input){
     }
 }
 
+// Devuelve la posición de la pulsación con respecto al canvas
 function getPosicionMouse(cvn, e){
     var cRect = cvn.getBoundingClientRect();
     return{
-        canvasX: e.clientX - cRect.left,
-        canvasY: e.clientY - cRect.top
+        canvasX: (e.clientX - cRect.left)*fondo.factor_de_ancho,
+        canvasY: (e.clientY - cRect.top)*fondo.factor_de_ancho
     } 
 }
 
@@ -189,7 +196,7 @@ function cambiarEstado( el, i ){
 }
 
 function nuevoTamanoPorDefectoStickers(){
-    let nuevoAncho = document.getElementById('resultado').offsetWidth;
+    let nuevoAncho = canvas.width;
 
     for(i=0; i<stickers.length; i++){
         stickers[i].defecto_x = nuevoAncho/2;
