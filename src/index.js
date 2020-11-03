@@ -13,6 +13,7 @@ let stickerActivo = null;
 function construirCanvas(){
     canvas = document.getElementById('resultado');
     context = canvas.getContext('2d'); 
+    stickersPorDefecto();
 
     // Crea las imágenes que se van mostrar
     fondo.imagen = new Image();
