@@ -1,5 +1,6 @@
 let canvas = null;
 let context = null;
+let subirNueva = true;
 
 let fondo = {
     imagen: null,
@@ -56,11 +57,24 @@ function dibujarSticker( obj ){
     context.drawImage(obj.imagen, obj.pos_x, obj.pos_y, obj.x, obj.y);
 }
 
+// Confirma que quiere descartar la edición anterior sin descargar
+document.getElementById('img-subida').onclick = 
+function (e){
+    if(!subirNueva){
+        var r = confirm("Si subes una nueva foto la anterior se perderá. ¿Seguro que quieres subir una nueva?");
+        if (!r) {
+            // document.getElementById('img-subida').preventDefault();
+            e.preventDefault();
+        }
+    }
+}
+
 // Toma la imagen subida y la dibuja
 function mostrarImagen(input){
     // Se han introducido imágenes
     if (input.files && input.files[0]) {
-        
+        subirNueva = false;
+
         var reader = new FileReader();
 
         reader.onload = function (e) {
