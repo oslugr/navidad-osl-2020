@@ -37,12 +37,18 @@ function construirCanvas(){
     }
 
     fondo.imagen.onload = function(){
+        // Elimina el texto que ya había
+        document.querySelector('#dedicatoria textarea').value = '';
+        dedicatoria.texto = '';
+
         // Calculamos como de ancho es en cuanto al espacio de la página
         let ancho = document.getElementById('resultado').offsetWidth;
         fondo.factor_de_ancho = fondo.imagen.width/ancho;
 
         crearImagen();
         nuevoTamanoPorDefectoStickers();
+        // Adapta el tamaño del texto y la posición a la fotografía
+        dedicatoria.tam = canvas.height*0.1;
     }
 
     fondo.imagen.src = fondo.url;
@@ -68,7 +74,6 @@ function crearImagen(){
     // TODO: Dibujar texto
     context.font = `bold ${dedicatoria.tam}px ${dedicatoria.fuente}`
     context.fillStyle = dedicatoria.color;
-    // context.fillText (dedicatoria.texto, dedicatoria.pos_x, dedicatoria.pos_y);
     dibujarTexto();
 }
 
