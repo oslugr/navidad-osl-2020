@@ -43,7 +43,6 @@ function construirCanvas(){
 
         crearImagen();
         nuevoTamanoPorDefectoStickers();
-        dedicatoria.ancho_max = canvas.width;
     }
 
     fondo.imagen.src = fondo.url;
@@ -133,10 +132,8 @@ function getElementoPulsado(pos){
 
     let ancho_texto = context.measureText(dedicatoria.texto).width;
 
-    // console.log(pos.canvasX);
-    console.log(pos.canvasY);
     if( dedicatoria.pos_x <= pos.canvasX && dedicatoria.pos_x+ancho_texto >= pos.canvasX &&
-        dedicatoria.pos_y <= pos.canvasY && dedicatoria.pos_y+dedicatoria.alto >= pos.canvasY){
+        dedicatoria.pos_y-dedicatoria.tam <= pos.canvasY && dedicatoria.pos_y-dedicatoria.tam+dedicatoria.alto >= pos.canvasY){
 
         texto_sel = true;
     }
@@ -181,10 +178,8 @@ $("#resultado").mousemove(function(e) {
             stickers[stickerActivo].pos_y = pos.canvasY-stickers[stickerActivo].y/2;
         }
         else{
-            let ancho_texto = context.measureText(dedicatoria.texto).width;
-
             dedicatoria.pos_x = pos.canvasX-dedicatoria.ancho/2;
-            dedicatoria.pos_y = pos.canvasY-dedicatoria.alto/4;
+            dedicatoria.pos_y = pos.canvasY-dedicatoria.alto/2+dedicatoria.tam;
         }
 
         crearImagen();
