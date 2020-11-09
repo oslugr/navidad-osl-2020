@@ -2,6 +2,19 @@ let canvas = null;
 let context = null;
 let subirNueva = true;
 
+let dedicatoria = {
+    texto: "",
+    defecto_tam: 100,
+    tam: 100,
+    pos_x: 100,
+    pos_y: 100,
+    fuente: "Arial",
+    color: "black",
+    proporcion: 1.0,
+    ancho: 0,
+    alto: 0
+};
+
 let fondo = {
     imagen: null,
     url: '',
@@ -30,6 +43,7 @@ function construirCanvas(){
 
         crearImagen();
         nuevoTamanoPorDefectoStickers();
+        dedicatoria.ancho_max = canvas.width;
     }
 
     fondo.imagen.src = fondo.url;
@@ -51,6 +65,12 @@ function crearImagen(){
     context.globalAlpha = 1.0;
 
     stickers.filter(x => x.activo).map( y => { dibujarSticker(y); });   
+
+    // TODO: Dibujar texto
+    context.font = `bold ${dedicatoria.tam}px ${dedicatoria.fuente}`
+    context.fillStyle = dedicatoria.color;
+    // context.fillText (dedicatoria.texto, dedicatoria.pos_x, dedicatoria.pos_y);
+    dibujarTexto();
 }
 
 function dibujarSticker( obj ){
@@ -100,7 +120,9 @@ function getPosicionMouse(cvn, e){
 }
 
 function getElementoPulsado(pos){
-    s_a = null;
+    let s_a = null;
+    let texto_sel = false;
+
     for(i=0 ; i<stickers.length; i++){
         if(stickers[i].activo &&
            stickers[i].pos_x <= pos.canvasX && stickers[i].pos_x+stickers[i].x >= pos.canvasX &&
@@ -109,8 +131,24 @@ function getElementoPulsado(pos){
             s_a = i;
     }
 
-    if(s_a)
-        activarSticker(s_a);
+    let ancho_texto = context.measureText(dedicatoria.texto).width;
+
+    // console.log(pos.canvasX);
+    console.log(pos.canvasY);
+    if( dedicatoria.pos_x <= pos.canvasX && dedicatoria.pos_x+ancho_texto >= pos.canvasX &&
+        dedicatoria.pos_y <= pos.canvasY && dedicatoria.pos_y+dedicatoria.alto >= pos.canvasY){
+
+        texto_sel = true;
+    }
+
+    if(!texto_sel){
+        if(s_a)
+            activarSticker(s_a);
+    }
+    else{
+        stickerActivo = -1;
+        document.getElementById('slider').value = dedicatoria.proporcion*50;
+    }
 }
 
 function activarSticker(i){
@@ -137,8 +175,17 @@ $("#resultado").mousemove(function(e) {
     if( isDragging == true && canvas)
     {   
         let pos = getPosicionMouse(canvas, e);
-        stickers[stickerActivo].pos_x = pos.canvasX-stickers[stickerActivo].x/2;
-        stickers[stickerActivo].pos_y = pos.canvasY-stickers[stickerActivo].y/2;
+        
+        if(stickerActivo != -1){
+            stickers[stickerActivo].pos_x = pos.canvasX-stickers[stickerActivo].x/2;
+            stickers[stickerActivo].pos_y = pos.canvasY-stickers[stickerActivo].y/2;
+        }
+        else{
+            let ancho_texto = context.measureText(dedicatoria.texto).width;
+
+            dedicatoria.pos_x = pos.canvasX-dedicatoria.ancho/2;
+            dedicatoria.pos_y = pos.canvasY-dedicatoria.alto/4;
+        }
 
         crearImagen();
     }
@@ -183,10 +230,18 @@ function descargar(){
 // Cambia el tamaño del sticker 
 function cambiarTamano(valor){
     ratio = valor/50;
-    stickers[stickerActivo].tamano = ratio;
 
-    stickers[stickerActivo].x = stickers[stickerActivo].defecto_x*ratio;
-    stickers[stickerActivo].y = stickers[stickerActivo].defecto_y*ratio;
+    if(stickerActivo != -1){
+        stickers[stickerActivo].tamano = ratio;
+
+        stickers[stickerActivo].x = stickers[stickerActivo].defecto_x*ratio;
+        stickers[stickerActivo].y = stickers[stickerActivo].defecto_y*ratio;
+    }
+    else{
+        dedicatoria.proporcion = ratio;
+
+        dedicatoria.tam = dedicatoria.defecto_tam*ratio;
+    }
 
     crearImagen();
 }
@@ -219,4 +274,45 @@ function nuevoTamanoPorDefectoStickers(){
         stickers[i].x = stickers[i].defecto_x*stickers[i].tamano;
         stickers[i].y = stickers[i].defecto_y*stickers[i].tamano;
     }
+}
+
+// Dedicatoria
+function cambiarDedicatoria(e){
+    dedicatoria.texto = e.value;
+    crearImagen();
+}
+
+function cambiarFuente(valor){
+    dedicatoria.fuente = valor;
+    if(canvas)
+        crearImagen();
+}
+
+function cambiarColor(valor){
+    dedicatoria.color = valor;
+    if(canvas)
+        crearImagen();
+}
+
+// Dibuja el texto separado en líneas
+function dibujarTexto(){
+
+    let lineas = dedicatoria.texto.split("\n");
+    let pos_y = dedicatoria.pos_y;
+
+    dedicatoria.alto = 0;
+    dedicatoria.ancho = 0;
+
+    for(i=0; i<lineas.length; i++){
+        context.fillText (lineas[i], dedicatoria.pos_x, pos_y);
+        pos_y += dedicatoria.tam;
+        let ancho_palabra = context.measureText(lineas[i]+" ").width;
+
+        if(dedicatoria.ancho < ancho_palabra){
+            dedicatoria.ancho = ancho_palabra;
+        }
+    }
+
+    dedicatoria.alto = lineas.length*dedicatoria.tam;
+    
 }

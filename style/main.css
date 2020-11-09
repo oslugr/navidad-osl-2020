@@ -32,9 +32,13 @@ html, body{
     SLIDER
 */
 
-#slider-div{
+#dedicatoria{
     padding-bottom: 20px;
     /* height: 100%; */
+}
+
+#dedicatoria textarea{
+    resize: none;
 }
 
 #slider{
@@ -97,4 +101,8 @@ html, body{
 
 .sticker-click:hover{
     cursor: pointer;
+}
+
+.seleccion-texto{
+    margin-bottom: 14px !important;
 }
