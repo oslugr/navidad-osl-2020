@@ -82,8 +82,7 @@ function dibujarSticker( obj ){
 }
 
 // Confirma que quiere descartar la edición anterior sin descargar
-document.getElementById('img-subida').onclick = 
-function (e){
+function confirmarDescartarFoto(e){
     if(!subirNueva){
         var r = confirm("Si subes una nueva foto la anterior se perderá. ¿Seguro que quieres subir una nueva?");
         if (!r) {
