@@ -41,7 +41,7 @@ html, body{
     resize: none;
 }
 
-#slider{
+.slider-input{
     width: 100%;
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
@@ -54,17 +54,17 @@ html, body{
     border-radius: 2px;
 }
 
-#slider::-webkit-slider-thumb {
+.slider-input::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 14px;
     height: 14px;
-    border-radius: 50%; 
+    border-radius: 50%;
     background: rgba(0,0,0);
     cursor: pointer;
 }
 
-#slider::-moz-range-thumb {
+.slider-input::-moz-range-thumb {
     width: 14px;
     height: 14px;
     border-radius: 50%;
@@ -105,4 +105,8 @@ html, body{
 
 .seleccion-texto{
     margin-bottom: 14px !important;
+}
+
+#boton-descarga{
+    margin-top: 20px;
 }

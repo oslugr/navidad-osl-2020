@@ -26,7 +26,7 @@ let stickerActivo = null;
 // Construye el canvas donde se mostrará la fotografía con los stickers
 function construirCanvas(){
     canvas = document.getElementById('resultado');
-    context = canvas.getContext('2d'); 
+    context = canvas.getContext('2d');
     stickersPorDefecto();
 
     // Crea las imágenes que se van mostrar
@@ -52,7 +52,7 @@ function construirCanvas(){
     }
 
     fondo.imagen.src = fondo.url;
-    
+
 }
 
 // Crea la imagen cada vez que cambia algo
@@ -60,16 +60,16 @@ function construirCanvas(){
 function crearImagen(){
 
     // Ajusta la imagen al espacio establecido para el elemento canvas
-    canvas.width = fondo.imagen.width; 
+    canvas.width = fondo.imagen.width;
     canvas.height = fondo.imagen.height;
 
     // Dibuja toda la imagen
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.globalAlpha = 1.0; 
+    context.globalAlpha = 1.0;
     context.drawImage(fondo.imagen, 0, 0, canvas.width, canvas.height);
     context.globalAlpha = 1.0;
 
-    stickers.filter(x => x.activo).map( y => { dibujarSticker(y); });   
+    stickers.filter(x => x.activo).map( y => { dibujarSticker(y); });
 
     // TODO: Dibujar texto
     context.font = `bold ${dedicatoria.tam}px ${dedicatoria.fuente}`
@@ -104,7 +104,7 @@ function mostrarImagen(input){
             // Se asocia a la primera imagen la url generada al subirla,
             // para que no pase por un servidor
             fondo.url = e.target.result;
-            
+
             construirCanvas();
         }
 
@@ -119,7 +119,7 @@ function getPosicionMouse(cvn, e){
     return{
         canvasX: (e.clientX - cRect.left)*fondo.factor_de_ancho,
         canvasY: (e.clientY - cRect.top)*fondo.factor_de_ancho
-    } 
+    }
 }
 
 function getElementoPulsado(pos){
@@ -130,7 +130,7 @@ function getElementoPulsado(pos){
         if(stickers[i].activo &&
            stickers[i].pos_x <= pos.canvasX && stickers[i].pos_x+stickers[i].x >= pos.canvasX &&
            stickers[i].pos_y <= pos.canvasY && stickers[i].pos_y+stickers[i].y >= pos.canvasY)
-            
+
             s_a = i;
     }
 
@@ -174,9 +174,9 @@ $(window).mouseup(function(){
 
 $("#resultado").mousemove(function(e) {
     if( isDragging == true && canvas)
-    {   
+    {
         let pos = getPosicionMouse(canvas, e);
-        
+
         if(stickerActivo != -1){
             stickers[stickerActivo].pos_x = pos.canvasX-stickers[stickerActivo].x/2;
             stickers[stickerActivo].pos_y = pos.canvasY-stickers[stickerActivo].y/2;
@@ -226,7 +226,7 @@ function descargar(){
     link.click();
 }
 
-// Cambia el tamaño del sticker 
+// Cambia el tamaño del sticker
 function cambiarTamano(valor){
     ratio = valor/50;
 
@@ -313,5 +313,5 @@ function dibujarTexto(){
     }
 
     dedicatoria.alto = lineas.length*dedicatoria.tam;
-    
+
 }

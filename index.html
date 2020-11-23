@@ -18,11 +18,11 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style/main.css">
     <link rel="stylesheet" type="text/css" href="style/semantic/dropdown.min.css">
-    
+
 </head>
 
 <body onresize="nuevoTamanoPorDefectoStickers()">
-        
+
         <!-- División en dos columnas -->
         <div id="main" class="ui two column doubling grid">
 
@@ -58,7 +58,7 @@
                         <a class="col-1 slider-control" href="#multi-item-example" role="button" data-slide="prev">
                             <div class="carousel-control-prev-icon" aria-hidden="true"></div>
                         </a>
-                        
+
                         <div class="col-10">
                             <div id="multi-item-example" class="carousel slide" data-interval="false">
 
@@ -68,15 +68,15 @@
                                             <div class="col-3 sticker-click" onclick="cambiarEstado(this,0);">
                                                 <img src="stickers/arbol.png" class="sticker-img" alt="">
                                             </div>
-                                
+
                                             <div class="col-3 sticker-click" onclick="cambiarEstado(this,1);">
                                                 <img src="stickers/bola.png" class="sticker-img" alt="">
                                             </div>
-                                
+
                                             <div class="col-3 sticker-click" onclick="cambiarEstado(this,2);">
                                                 <img src="stickers/copo.png" class="sticker-img" alt="">
                                             </div>
-                                            
+
                                             <div class="col-3 sticker-click" onclick="cambiarEstado(this,3);">
                                                 <img src="stickers/galleta.png" class="sticker-img" alt="">
                                             </div>
@@ -87,15 +87,15 @@
                                             <div class="col-3 sticker-click" onclick="cambiarEstado(this,4);">
                                                 <img src="stickers/gato.png" class="sticker-img" alt="">
                                             </div>
-                                
+
                                             <div class="col-3 sticker-click" onclick="cambiarEstado(this,5);">
                                                 <img src="stickers/gorro.png" class="sticker-img" alt="">
                                             </div>
-                                
+
                                             <div class="col-3 sticker-click" onclick="cambiarEstado(this,6);">
                                                 <img src="stickers/hoja.png" class="sticker-img" alt="">
                                             </div>
-                                            
+
                                             <div class="col-3 sticker-click" onclick="cambiarEstado(this,7);">
                                                 <img src="stickers/merry.png" class="sticker-img" alt="">
                                             </div>
@@ -106,7 +106,7 @@
                                             <div class="col-3 sticker-click" onclick="cambiarEstado(this,8);">
                                                 <img src="stickers/piruleta.png" class="sticker-img" alt="">
                                             </div>
-                                
+
                                             <div class="col-3 sticker-click" onclick="cambiarEstado(this,9);">
                                                 <img src="stickers/regalo.png" class="sticker-img" alt="">
                                             </div>
@@ -120,15 +120,15 @@
                         </a>
                     </div>
                 </div>
-                
+
 
                 <!-- Slider para cambiar el tamaño del sticker -->
                 <h4 class="ui horizontal divider header">
                     Tamaño
                 </h4>
 
-                <div id="slider-div">
-                    <input type="range" min="1" max="100" value="50" id="slider" onchange="cambiarTamano(this.value)" oninput="cambiarTamano(this.value)">
+                <div class="slider-contenedor" id="slider-div">
+                    <input type="range" min="1" max="100" value="50" class="slider-input" id="slider" onchange="cambiarTamano(this.value)" oninput="cambiarTamano(this.value)">
                 </div>
 
                 <h4 class="ui horizontal divider header">
@@ -180,14 +180,23 @@
                                     <div class="ui green empty circular label"></div>
                                     Verde
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Slider para cambiar el tamaño de la dedicatoria -->
+                <h4 class="ui horizontal divider header">
+                    Tamaño de la dedicatoria
+                </h4>
+
+                <div class="slider-contenedor" id="slider-div-dedicatoria">
+                    <input type="range" min="1" max="100" value="50" class="slider-input" id="slider-div-dedicatoria" onchange="cambiarTamano(this.value)" oninput="cambiarTamano(this.value)">
+                </div>
+
                 <!-- Botón para descargar imágenes -->
-                <div class="fluid ui labeled icon button" onclick="descargar()">
+                <div id="boton-descarga" class="fluid ui labeled icon button" onclick="descargar()">
                     <i class="download icon"></i>
                     Pulsa aquí para descargar la imagen
                 </div>
@@ -200,7 +209,7 @@
                 </canvas>
             </div>
 
-            
+
         </div>
 
     <script src="src/stickers.js"></script>
