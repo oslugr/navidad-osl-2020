@@ -146,9 +146,10 @@ function getElementoPulsado(pos){
     }
 
     if(!texto_sel){
-        if(s_a)
+        if(s_a){
             activarSticker(s_a);
             dedicatoria.pulsada = false;
+        }
     }
     else{
         dedicatoria.pulsada = true;
