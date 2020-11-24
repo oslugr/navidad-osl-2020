@@ -12,7 +12,8 @@ let dedicatoria = {
     color: "black",
     proporcion: 1.0,
     ancho: 0,
-    alto: 0
+    alto: 0,
+    pulsada: false
 };
 
 let fondo = {
@@ -49,6 +50,8 @@ function construirCanvas(){
         nuevoTamanoPorDefectoStickers();
         // Adapta el tamaño del texto y la posición a la fotografía
         dedicatoria.tam = canvas.height*0.1;
+        document.getElementById('slider-dedicatoria').value = 50;
+        document.getElementById('slider').value = 50;
     }
 
     fondo.imagen.src = fondo.url;
@@ -145,10 +148,10 @@ function getElementoPulsado(pos){
     if(!texto_sel){
         if(s_a)
             activarSticker(s_a);
+            dedicatoria.pulsada = false;
     }
     else{
-        stickerActivo = -1;
-        document.getElementById('slider').value = dedicatoria.proporcion*50;
+        dedicatoria.pulsada = true;
     }
 }
 
@@ -177,13 +180,13 @@ $("#resultado").mousemove(function(e) {
     {
         let pos = getPosicionMouse(canvas, e);
 
-        if(stickerActivo != -1){
-            stickers[stickerActivo].pos_x = pos.canvasX-stickers[stickerActivo].x/2;
-            stickers[stickerActivo].pos_y = pos.canvasY-stickers[stickerActivo].y/2;
-        }
-        else{
+        if(dedicatoria.pulsada){
             dedicatoria.pos_x = pos.canvasX-dedicatoria.ancho/2;
             dedicatoria.pos_y = pos.canvasY-dedicatoria.alto/2+dedicatoria.tam;
+        }
+        else{
+            stickers[stickerActivo].pos_x = pos.canvasX-stickers[stickerActivo].x/2;
+            stickers[stickerActivo].pos_y = pos.canvasY-stickers[stickerActivo].y/2;
         }
 
         crearImagen();
@@ -236,11 +239,16 @@ function cambiarTamano(valor){
         stickers[stickerActivo].x = stickers[stickerActivo].defecto_x*ratio;
         stickers[stickerActivo].y = stickers[stickerActivo].defecto_y*ratio;
     }
-    else{
-        dedicatoria.proporcion = ratio;
 
-        dedicatoria.tam = dedicatoria.defecto_tam*ratio;
-    }
+    crearImagen();
+}
+
+// Cambia el tamaño del sticker
+function cambiarTamanoDedicatoria(valor){
+    ratio = valor/50;
+
+    dedicatoria.proporcion = ratio;
+    dedicatoria.tam = dedicatoria.defecto_tam*ratio;
 
     crearImagen();
 }
