@@ -109,6 +109,8 @@ function mostrarImagen(input){
             fondo.url = e.target.result;
 
             construirCanvas();
+
+            input.value = '';
         }
 
         // Se lee el primer archivo introducido
