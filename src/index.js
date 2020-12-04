@@ -33,8 +33,8 @@ function construirCanvas(){
     // Crea las imágenes que se van mostrar
     fondo.imagen = new Image();
     // Cargas los stickers de forma asíncrona
-    for(i=0; i<stickers.length; i++){
-        stickers[i].imagen.src = stickers[i].url;
+    for(i=0; i<stickers_plantilla.length; i++){
+        stickers_plantilla[i].imagen.src = stickers_plantilla[i].url;
     }
 
     fondo.imagen.onload = function(){
@@ -146,7 +146,7 @@ function getElementoPulsado(pos){
     }
 
     if(!texto_sel){
-        if(s_a){
+        if(s_a != null){
             activarSticker(s_a);
             dedicatoria.pulsada = false;
         }
@@ -160,6 +160,11 @@ function activarSticker(i){
     stickerActivo = i;
     stickers[i].activo = true;
     document.getElementById('slider').value = stickers[stickerActivo].tamano*50;
+}
+
+function eliminarSticker(){
+    stickers.splice(stickerActivo, 1);
+    crearImagen();
 }
 
 // Funcionalidad para mover un sticker a través de la imagen
@@ -256,31 +261,19 @@ function cambiarTamanoDedicatoria(valor){
 
 // Cambia el estado de un sticker al ser pulsado
 function cambiarEstado( el, i ){
-
-    // El sticker se está mostrando
-    if(stickers[i].activo){
-        el.style.background = 'none';
-        stickers[i].activo = false;
-        stickerActivo = null;
-        crearImagen();
-    }
-    // El sticker no se está mostrando
-    else{
-        el.style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
-        activarSticker(i);
-        crearImagen();
-    }
-
+    stickers.push({ ...stickers_plantilla[i] } );
+    activarSticker(stickers.length-1);
+    crearImagen();
 }
 
 function nuevoTamanoPorDefectoStickers(){
     let nuevoAncho = canvas.width;
 
-    for(i=0; i<stickers.length; i++){
-        stickers[i].defecto_x = nuevoAncho/2;
-        stickers[i].defecto_y = nuevoAncho/2;
-        stickers[i].x = stickers[i].defecto_x*stickers[i].tamano;
-        stickers[i].y = stickers[i].defecto_y*stickers[i].tamano;
+    for(i=0; i<stickers_plantilla.length; i++){
+        stickers_plantilla[i].defecto_x = nuevoAncho/2;
+        stickers_plantilla[i].defecto_y = nuevoAncho/2;
+        stickers_plantilla[i].x = stickers_plantilla[i].defecto_x*stickers_plantilla[i].tamano;
+        stickers_plantilla[i].y = stickers_plantilla[i].defecto_y*stickers_plantilla[i].tamano;
     }
 }
 
