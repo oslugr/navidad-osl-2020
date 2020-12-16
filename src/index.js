@@ -231,6 +231,8 @@ cv.addEventListener("touchmove", function (e) {
 
 // Descarga de la imagen
 function descargar(){
+    // $.get("url"); // Para el recuento de gente que lo usa
+
     let link = document.createElement('a');
     link.download = 'osl_navidad.png';
     link.href = document.getElementById('resultado').toDataURL();
